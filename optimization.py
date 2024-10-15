@@ -4,7 +4,6 @@ import numpy as np
 import time
 import dask.dataframe as dd
 
-# Create a larger sample DataFrame with random data (10 million rows)
 np.random.seed(42)
 data = {
     'A': np.random.choice(['group1', 'group2', 'group3'], 10000000),  # 10 million rows
@@ -45,10 +44,9 @@ df.pivot_table(index='A', columns='B', values='C', aggfunc='sum', fill_value=0)
 end = time.time()
 optimized_pivot_time = end - start
 
-# Convert the pandas DataFrame to a Dask DataFrame
 ddf = dd.from_pandas(df, npartitions=8)  # Dividing the dataset into 8 partitions for parallel processing
 
-# Parallelized groupby using Dask
+
 start = time.time()
 ddf.groupby(['A', 'B']).sum().compute()  # compute() triggers the parallel computation
 end = time.time()
@@ -66,7 +64,7 @@ result = df.groupby(['A', 'B'])['C'].sum().unstack(fill_value=0)
 end = time.time()
 unstack_pivot_time = end - start
 
-# Store times dynamically in a DataFrame
+
 timing_data = {
     'Function': [
         'Groupby (Original)',
