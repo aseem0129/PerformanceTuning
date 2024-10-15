@@ -1,0 +1,8 @@
+Function,Execution Time (seconds)
+Groupby (Original),0.638796329498291
+Pivot Table (Original),0.540416955947876
+Groupby (Optimized),0.49788784980773926
+Pivot Table (Optimized),0.4622776508331299
+Groupby (Dask),0.9403772354125977
+Pivot Table (Dask),0.5875191688537598
+Pivot (groupby + unstack),0.5219728946685791
